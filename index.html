@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" charset="utf-8"/>
+	<title>Philana Aurelia</title>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Needed for RESTful services (such as $resource) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+    <script src="js/feeds.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+    <body ng-app="PersonalSite">
+        <nav>
+    <ul id="menu">
+        <li><a href="index.html"> Home </a></li>
+        <li><a href="resume.html"> Resume </a> </li>
+        <li> Portfolio </li>
+        <li class="float-right"> Contact </li>
+    </ul>
+</nav>
+<div id="container">
+    <div class="pod top" id="philana">
+    	<img id="logo" src="img/logo.png">
+    	<a href="http://linkedin.com/in/philanabenton" target="_blank"><img class="link-icon" src="img/linkedin_icon.png"/></a>
+    	<a href="https://github.com/philanaaurelia/followers" target="_blank"><img class="link-icon" src="img/github_icon.png"/></a>
+    	<img class="link-icon" src="img/mail_icon.png"/>
+		<img class="link-icon" src="img/xbox_icon.png"/>
+    </div>
+    
+    <div ng-controller="TwitterCtrl" class="pod center" id="twitter">
+    	<table>
+    		<tr ng-repeat="tweet in Tweets">
+    			<th class="header" ng-show="$index==0" ng-bind-html="|tweet.text | linky:'_blank'"> {{tweet.text}}</th>
+   
+    		<td ng-show="$index > 0" ng-bind-html="tweet.text | linky:'_blank'"> {{tweet.text}} </td>
+      		</tr>
+		</table>
+    </div>
+    
+    <div ng-controller="InstagramCtrl" class="pod right" id="instagram">
+    	<img ng-repeat="pics in Pictures" class="insta-thumb" src="{{pics.thumbnail_src}}/">
+    </div>
+    
+    <div ng-controller="MediumCtrl" class="pod bottom" id="medium">
+    	<table>
+    		<tr ng-repeat="publication in Publications">
+                <th class="header" ng-show="$index==0">
+                    <a href="{{publication.link}}">{{publication.title}} </a>
+                </th>
+       
+                <td ng-show="$index > 0">
+                	<a href="{{publication.link}}">{{publication.title}} </a>
+      			</td>
+      		</tr>
+      </table>
+    </div>
+    
+    <div ng-controller="PocketCtrl" class="pod bottom center" id="pocket">
+		<table>
+    		<tr ng-repeat="article in Articles">
+                <th class="header" ng-show="$index==0">
+                    <a href="{{article.link}}">{{article.title}} </a>
+                </th>
+   
+    			<td ng-show="$index > 0">
+					<a href="{{article.link}}">{{article.title}} </a>
+				</td>
+      		</tr>
+      </table>
+    </div>
+    
+    <div ng-controller="BibleCtrl" class="pod right bottom" id="bible">
+    	<span ng-bind-html="Scripture.text" class="header">{{Scripture.text}}</span>
+   	</div>
+<!-- Close Container div -->
+</div>
+</body>
+</html>
